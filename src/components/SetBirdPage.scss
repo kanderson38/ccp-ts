@@ -1,0 +1,45 @@
+@import '../lib/styles/colors';
+
+div.set-bird-page {
+  position: absolute;
+  top: 0px;
+  min-width: 340px;
+  height: 100%;
+  z-index: 100;
+  background-color: $cockatiel-creamface-yellow;
+
+  .description {
+    text-align: center;
+  }
+  ul {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  li {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:nth-of-type(even) {
+      background-color: white;
+    }
+
+    &:nth-of-type(odd) {
+      background-color: $cockatiel-creamface-yellow;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+  }
+}

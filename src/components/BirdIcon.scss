@@ -1,0 +1,219 @@
+@import '../lib/styles/colors.scss';
+
+.birdrect {
+  width: 280px;
+  height: 15px;
+  background-color: grey;
+  display: flex;
+  position: relative;
+  left: 10px;
+  box-shadow: 0 0 0 2px black;
+  border-radius: 0 0 30px 0;
+
+  &:before {
+    content: '';
+    height: 0px;
+    width: 0px;
+    border-left: 20px solid black;
+    border-top-left-radius: 100%;
+    border-top: 5px solid black;
+    border-bottom: 10px solid black;
+    border-right: 0px solid;
+    position: absolute;
+    left: -18px;
+    box-shadow: -2px 0 0 2px black;
+    border-color: grey;
+  }
+}
+
+.face {
+  width: 70px;
+  height: 15px;
+  position: relative;
+  left: 0px;
+  background-color: $cockatiel-yellow;
+  border-radius: 5% / 50%;
+}
+
+.eye {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: #553311;
+  position: absolute;
+  left: 10px;
+  z-index: 30;
+}
+
+.cheek {
+  position: absolute;
+  z-index: 2;
+  left: 25px;
+  height: 15px;
+  width: 30px;
+  background-color: $cockatiel-orange-cheek;
+  border-radius: 15% / 50%;
+}
+
+.pied-pattern {
+  width: 40%;
+  height: 15px;
+  background-color: $cockatiel-yellow;
+  position: absolute;
+  right: 0px;
+  border-radius: 10px 0 50px / 50px 0 50px 5px;
+  display: none;
+
+  &:before {
+    content: '';
+    width: 40%;
+    height: 15px;
+    background-color: $cockatiel-yellow;
+    border-radius: 10px / 50px 5px 50px 5px;
+    position: absolute;
+    left: -15vw;
+  }
+  .pied & {
+    display: block;
+  }
+}
+
+.pearl-pattern {
+  width: 20px;
+  height: 15px;
+  border-radius: 50%;
+  box-shadow: 5px 0 0 0 $cockatiel-yellow;
+  display: none;
+
+  .pearl & {
+    display: block;
+  }
+}
+
+.dominant-yellowcheek,
+.sex-linked-yellowcheek {
+  .face {
+    background-color: white;
+  }
+  .cheek {
+    background-color: $cockatiel-yellow;
+  }
+}
+
+.cinnamon {
+  &.birdrect {
+    background-color: $cockatiel-cinnamon;
+
+    &:before {
+      border-color: $cockatiel-cinnamon-beak;
+    }
+  }
+  .eye {
+    background-color: $cockatiel-plum-eye;
+  }
+}
+
+.silver {
+  &.birdrect {
+    background-color: $cockatiel-silver;
+    &:before {
+      border-color: $cockatiel-pink-beak;
+    }
+  }
+  .eye {
+    background-color: $cockatiel-red-eye;
+  }
+}
+
+.fallow {
+  &.birdrect {
+    background-color: $cockatiel-fallow;
+    &:before {
+      border-color: $cockatiel-pink-beak;
+    }
+  }
+  .eye {
+    background-color: $cockatiel-red-eye;
+  }
+}
+
+.olive {
+  &.birdrect {
+    background-color: $cockatiel-olive;
+  }
+}
+
+.dominant-yellowcheek {
+  .face {
+    background-color: $cockatiel-creamface-cheek-yellow;
+  }
+  .cheek {
+    background-color: $cockatiel-yellow;
+  }
+}
+
+.dominant-silver {
+  &.birdrect {
+    background-color: #cccccc;
+    &:before {
+      border-color: grey;
+    }
+  }
+}
+
+.lutino {
+  &.birdrect,
+  .pied-pattern,
+  .pied-pattern:before {
+    background-color: white;
+  }
+
+  .eye {
+    background-color: $cockatiel-ruby-eye;
+  }
+
+  &.birdrect:before {
+    border-color: $cockatiel-fallow;
+  }
+}
+
+.whiteface {
+  .cheek,
+  .face,
+  .pied-pattern,
+  .pied-pattern:before {
+    background-color: white;
+  }
+
+  .pearl-pattern {
+    box-shadow: 5px 0 0 0 white;
+  }
+}
+
+.creamface {
+  .cheek {
+    background-color: $cockatiel-creamface-cheek-yellow;
+  }
+  .face,
+  .pied-pattern,
+  .pied-pattern:before {
+    background-color: $cockatiel-creamface-yellow;
+  }
+  .pearl-pattern {
+    box-shadow: 5px 0 0 0 $cockatiel-creamface-yellow;
+  }
+}
+
+.pastelface {
+  .cheek {
+    background-color: $cockatiel-pastelface-cheek;
+  }
+  .face,
+  .pied-pattern,
+  .pied-pattern:before {
+    background-color: $cockatiel-creamface-cheek-yellow;
+  }
+  .pearl-pattern {
+    box-shadow: 5px 0 0 0 $cockatiel-creamface-cheek-yellow;
+  }
+}

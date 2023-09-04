@@ -1,0 +1,27 @@
+@import '../lib/styles/colors.scss';
+
+li {
+  min-height: 55px;
+  font-size: 1em;
+  padding: 10px 18px;
+  border-top: 1px solid $cockatiel-dark-brown;
+
+  div.list-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+  }
+
+  span {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  button.open-form-button {
+    color: $cockatiel-creamface-yellow;
+    background-color: $cockatiel-dark-brown;
+    border: 0;
+    border-radius: 4px;
+  }
+}
