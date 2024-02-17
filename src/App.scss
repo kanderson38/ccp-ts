@@ -1,0 +1,44 @@
+@import './lib/styles/colors';
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $cockatiel-bg-color;
+}
+
+header {
+  background-color: $cockatiel-dark-brown;
+  text-align: center;
+  color: $cockatiel-creamface-cheek-yellow;
+  padding: 18px 0;
+  border-bottom: 2px solid $cockatiel-orange-cheek;
+
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin: 0px;
+}
+
+h2.listHeader {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 1.3em;
+  color: $cockatiel-creamface-yellow;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}

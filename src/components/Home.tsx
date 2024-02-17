@@ -19,6 +19,7 @@ function Home() {
   for (const chick of femaleChicks) {
     formattedFemaleChicks.push({
       bird: chick,
+      isEditable: false,
       buttonAction: (chick: Cockatiel) => {
         return chick;
       },
@@ -27,6 +28,7 @@ function Home() {
   for (const chick of maleChicks) {
     formattedMaleChicks.push({
       bird: chick,
+      isEditable: false,
       buttonAction: (chick: Cockatiel) => {
         return chick;
       },
@@ -42,6 +44,7 @@ function Home() {
           birdsAndActions={[
             {
               bird: motherBird,
+              isEditable: true,
               buttonAction: (bird: Cockatiel) => {
                 setShowSetBirdPage(true);
                 setWhichBirdToEdit(bird);
@@ -49,9 +52,10 @@ function Home() {
             },
             {
               bird: fatherBird,
-              buttonAction: (e) => {
+              isEditable: true,
+              buttonAction: (bird: Cockatiel) => {
                 setShowSetBirdPage(true);
-                setWhichBirdToEdit(e);
+                setWhichBirdToEdit(bird);
               },
             },
           ]}

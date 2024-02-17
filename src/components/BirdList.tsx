@@ -4,6 +4,7 @@ import Cockatiel from '../lib/Cockatiel';
 
 export interface birdsAndActionsObj {
   bird: Cockatiel;
+  isEditable: boolean;
   buttonAction: (bird: Cockatiel) => void;
 }
 
@@ -19,6 +20,7 @@ function BirdList(props: Props) {
         <BirdItem
           bird={item.bird}
           key={index}
+          isEditable={item.isEditable}
           handleEditButtonClick={item.buttonAction}
         />
       );

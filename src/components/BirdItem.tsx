@@ -5,6 +5,7 @@ import './BirdItem.scss';
 export interface Props {
   bird: Cockatiel;
   handleEditButtonClick: (bird: Cockatiel) => void;
+  isEditable: boolean;
 }
 
 function BirdItem(props: Props) {
@@ -14,7 +15,7 @@ function BirdItem(props: Props) {
         <span>
           {props.bird.prefix || ''} {props.bird.genotypeInWords.genotype}
         </span>
-        {props.handleEditButtonClick && (
+        {props.isEditable && (
           <button
             type='button'
             className='open-form-button'
