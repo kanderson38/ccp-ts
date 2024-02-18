@@ -13,7 +13,8 @@ function BirdItem(props: Props) {
     <li>
       <div className='list-top-row'>
         <span>
-          {props.bird.prefix || ''} {props.bird.genotypeInWords.genotype}
+          {props.bird.prefix || props.bird.frequencyAsPercentage}
+          {props.bird.genotypeInWords.genotype}
         </span>
         {props.isEditable && (
           <button
