@@ -33,6 +33,10 @@ export default class Cockatiel {
     return ['cinnamon', 'pearl', 'lutino', 'sex-linked-yellowcheek'];
   }
 
+  get frequencyAsPercentage() {
+    return `${this.frequency * 100}% `;
+  }
+
   get sexChromosomes() {
     const chromosome1Array = [];
     const chromosome2Array = [];
@@ -49,15 +53,23 @@ export default class Cockatiel {
     const splitsArray = [];
     const visualsArray = [];
     const classes: string[] = [];
+    let parblueSuffix = '';
     for (const gene in this.genotype) {
       const results = this.genotype[gene].splitsAndVisuals;
       if (results.splits.length) {
         for (const split of results.splits) {
           splitsArray.push(split);
         }
-        if (gene === 'parblue') {
+        // if there are multiple parblue splits, add both splits to the class list because they will affect the phenotype
+        if (gene === 'parblue' && !this.genotype[gene].genePair.includes('0')) {
           for (const className of results.classes) {
             classes.push(className);
+            const genePair = this.genotype[gene].genePair.split('');
+            const geneInts: number[] = genePair.map((char) => {
+              return parseInt(char, 10);
+            });
+            const lowestNumber = Math.min(...geneInts);
+            parblueSuffix = this.genotype[gene].names[lowestNumber - 1];
           }
         }
       }
@@ -74,7 +86,9 @@ export default class Cockatiel {
     return {
       genotype: `${visualsArray.join(' ')} ${
         splitsArray.length ? 'split to' : ''
-      } ${splitsArray.join(' ')}`,
+      } ${splitsArray.join(' ')} ${
+        parblueSuffix && ` (will appear to be a visual ${parblueSuffix})`
+      }`,
       classes,
     };
   }
