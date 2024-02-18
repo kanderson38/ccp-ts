@@ -20,7 +20,7 @@ export default class Pair {
         }
         const geneSplit1 = gene1.split('');
         const geneSplit2 = gene2.split('');
-        const resultsObj: Record<string, number> = {};
+        const results: Record<string, number> = {};
 
         for (const singleGene1 of geneSplit1) {
           const gene1Int = parseInt(singleGene1, 10);
@@ -29,14 +29,15 @@ export default class Pair {
             const combination = [gene1Int, gene2Int]
               .sort((a, b) => b - a)
               .join('');
-            if (resultsObj[combination]) {
-              resultsObj[combination] += 1;
+            if (results[combination]) {
+              results[combination] += 1;
             } else {
-              resultsObj[combination] = 1;
+              results[combination] = 1;
             }
           }
         }
-        return resultsObj;
+        console.log('recessive', results);
+        return results;
       },
       'sex-linked': () => {
         const crossoverArrayFemale: Record<string, string>[] = [];
@@ -92,9 +93,28 @@ export default class Pair {
     };
   }
 
+  updateChickArray(
+    chickArray: Cockatiel[],
+    gene: string,
+    results: Record<string, number>,
+  ): Cockatiel[] {
+    const allTempArrays: Cockatiel[] = [];
+    for (const chick of chickArray) {
+      const tempChicks = [];
+      for (const geneCombo in results) {
+        const deepCopyChick = _.cloneDeep(chick);
+        deepCopyChick.genotype[gene].genePair = geneCombo;
+
+        tempChicks.push(deepCopyChick);
+      }
+      allTempArrays.push(...tempChicks);
+    }
+    return allTempArrays;
+  }
+
   breed() {
-    const femaleChicks = [new Cockatiel('female')];
-    const maleChicks = [new Cockatiel('male')];
+    let femaleChicks: Cockatiel[] = [new Cockatiel('female')];
+    let maleChicks: Cockatiel[] = [new Cockatiel('male')];
 
     for (const gene of Object.keys(Cockatiel.allMutations)) {
       const genePairFemale = this.female.genotype[gene].genePair;
@@ -118,27 +138,9 @@ export default class Pair {
             }
           });
         } else {
-          [maleChicks, femaleChicks].forEach((chickArray) => {
-            const tempChicks = [];
-            for (const chick of chickArray) {
-              const { genotype } = chick;
-              const genotypeDeepCopy = _.cloneDeep(genotype);
-              for (const geneCombo in results) {
-                genotypeDeepCopy[gene].genePair = geneCombo;
-                const newChick = new Cockatiel(
-                  chick.gender,
-                  '',
-                  genotypeDeepCopy,
-                );
-
-                tempChicks.push(newChick);
-                console.log('newChick', tempChicks);
-              }
-            }
-            chickArray.push(...tempChicks);
-          });
+          maleChicks = this.updateChickArray(maleChicks, gene, results);
+          femaleChicks = this.updateChickArray(femaleChicks, gene, results);
         }
-        console.log('males', maleChicks);
       } else if (inheritanceMode === 'sex-linked') {
         const strictResults = this.recombineMethods[inheritanceMode]();
 
